@@ -5,6 +5,7 @@ from Crypto.Cipher import PKCS1_OAEP
 import base64
 import logging
 import secrets
+import os
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)  # Generate a 32-character (16 bytes) random hexadecimal token
@@ -12,10 +13,8 @@ app.secret_key = secrets.token_hex(16)  # Generate a 32-character (16 bytes) ran
 # Configure logging
 logging.basicConfig(filename='app.log', level=logging.DEBUG, format='%(asctime)s %(levelname)s: %(message)s')
 
-# API key authentication
-api_keys = {
-    'admin': 'azxjyNcMqddnqAXEZ4lbvLjlmQcZ9T8zmx6pEmzi'
-}
+# Get the API key from the environment variable
+api_key = os.getenv('API_KEY')
 
 # RSA Key Generation
 def generate_rsa_keypair(key_size=2048):
@@ -48,7 +47,7 @@ def index():
     return render_template('index.html')
 
 @app.route('/keys', methods=['GET', 'POST'])
-@APIKey(required_key='YOUR_API_KEY_HERE')
+@APIKey(required_key=api_key)
 def keys():
     if request.method == 'POST':
         public_key_user1, private_key_user1 = generate_rsa_keypair()
@@ -66,7 +65,7 @@ def keys():
     return render_template('keys.html')
 
 @app.route('/encrypt', methods=['GET', 'POST'])
-@APIKey(required_key='YOUR_API_KEY_HERE')
+@APIKey(required_key=api_key)
 def encrypt():
     if request.method == 'POST':
         public_key_bs = request.form['public_key_bs'].encode()
@@ -84,7 +83,7 @@ def encrypt():
     return render_template('encrypt.html')
 
 @app.route('/noma', methods=['GET', 'POST'])
-@APIKey(required_key='YOUR_API_KEY_HERE')
+@APIKey(required_key=api_key)
 def noma():
     if request.method == 'POST':
         encrypted_message_user1 = request.form['encrypted_message_user1'].encode()
@@ -104,7 +103,7 @@ def noma():
     return render_template('noma.html')
 
 @app.route('/decrypt', methods=['GET', 'POST'])
-@APIKey(required_key='YOUR_API_KEY_HERE')
+@APIKey(required_key=api_key)
 def decrypt():
     if request.method == 'POST':
         private_key_bs = request.form['private_key_bs'].encode()
