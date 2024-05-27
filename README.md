@@ -10,7 +10,7 @@ To get started with the project, follow these steps:
 
 1. Clone the repository:
    ```sh
-   git https://github.com/aafaq-rashid-comprinno/noma.git
+   git clone https://github.com/asifmanzoor12/NOMAConfidentialitySchemeUsingRSA.git
    cd noma
    ```
 
