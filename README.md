@@ -16,7 +16,7 @@ To get started with the project, follow these steps:
 
 2. Create a virtual environment:
    ```sh
-   python3 -m venv venv
+   python -m venv venv
    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
    ```
 
