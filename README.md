@@ -14,7 +14,7 @@ To get started with the project, follow these steps:
    cd NOMAConfidentialitySchemeUsingRSA
    ```
 
-2. Create a virtual environment:
+2. Create a virtual environment(Optional):
    ```sh
    python -m venv venv
    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
@@ -27,8 +27,8 @@ To get started with the project, follow these steps:
 
 4. Set the Flask environment variables:
    ```sh
-   export FLASK_APP=app.py
-   export FLASK_ENV=development
+   set FLASK_APP=app.py
+   set FLASK_ENV=development
    ```
 
 5. Run the Flask application:
