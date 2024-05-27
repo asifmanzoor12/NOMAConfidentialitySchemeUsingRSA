@@ -11,7 +11,7 @@ To get started with the project, follow these steps:
 1. Clone the repository:
    ```sh
    git clone https://github.com/asifmanzoor12/NOMAConfidentialitySchemeUsingRSA.git
-   cd noma
+   cd NOMAConfidentialitySchemeUsingRSA
    ```
 
 2. Create a virtual environment:
