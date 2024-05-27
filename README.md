@@ -84,3 +84,91 @@ To run the project using Docker, follow these steps:
    ```
 
 3. Access the application at `http://localhost:5000`.
+
+
+Sure! Let's break down the Flask application code into different parts and explain each one in detail.
+
+### Imports and App Setup
+
+```python
+from flask import Flask, render_template, request
+from Crypto.PublicKey import RSA
+from Crypto.Cipher import PKCS1_OAEP
+import base64
+
+app = Flask(__name__)
+app.secret_key = 'your_secret_key'
+```
+
+- `Flask` is imported from the `flask` module to create the web application.
+- `render_template` is imported to render HTML templates.
+- `request` is imported to handle HTTP requests.
+- `RSA` and `PKCS1_OAEP` are classes from the `Crypto.PublicKey` and `Crypto.Cipher` modules of the `pycryptodome` library for RSA encryption.
+- `base64` is imported to encode and decode messages.
+
+### Key Generation
+
+```python
+def generate_rsa_keypair(key_size=2048):
+    key = RSA.generate(key_size)
+    private_key = key.export_key()
+    public_key = key.publickey().export_key()
+    return public_key, private_key
+```
+
+- `generate_rsa_keypair` function generates a new RSA key pair of the specified `key_size` (default is 2048 bits).
+- The function returns the public and private keys as strings.
+
+### Message Encryption
+
+```python
+def encrypt_message(public_key, message):
+    rsa_key = RSA.import_key(public_key)
+    cipher = PKCS1_OAEP.new(rsa_key)
+    encrypted_message = cipher.encrypt(message)
+    return base64.b64encode(encrypted_message)
+```
+
+- `encrypt_message` function encrypts a message using the provided public key.
+- It imports the public key, creates an encryption cipher, encrypts the message, and returns the encrypted message as a base64-encoded string.
+
+### Message Decryption
+
+```python
+def decrypt_message(private_key, encrypted_message):
+    rsa_key = RSA.import_key(private_key)
+    cipher = PKCS1_OAEP.new(rsa_key)
+    decrypted_message = cipher.decrypt(base64.b64decode(encrypted_message))
+    return decrypted_message
+```
+
+- `decrypt_message` function decrypts an encrypted message using the provided private key.
+- It imports the private key, creates a decryption cipher, decrypts the message, and returns the decrypted message.
+
+### Simulation of NOMA Transmission
+
+```python
+def simulate_noma_transmission(messages, powers):
+    combined_signal = [(m, p) for m, p in zip(messages, powers)]
+    return combined_signal
+```
+
+- `simulate_noma_transmission` function simulates a NOMA transmission by combining encrypted messages with power levels.
+- It takes a list of encrypted messages and a list of power levels, zips them together, and returns the combined signal.
+
+### Routes and Views
+
+The Flask application defines routes for different parts of the process: generating keys, encrypting messages, simulating NOMA transmission, and decrypting messages. Each route corresponds to a different HTML template.
+
+### HTML Templates
+
+The HTML templates (`index.html`, `keys.html`, `encrypt.html`, `noma.html`, `decrypt.html`) provide the user interface for the application. They use Bootstrap for styling and contain forms for user input and display areas for messages and keys.
+
+### Running the Application
+
+- The `if __name__ == '__main__':` block at the end of the script runs the Flask application when the script is executed directly.
+- The `app.run(debug=True)` method starts the Flask development server with debugging enabled.
+
+### Summary
+
+The Flask application provides a user-friendly interface for demonstrating the NOMA confidentiality scheme using RSA encryption. It guides the user through the key generation, encryption, NOMA simulation, and decryption steps, with clear explanations and interactive forms for input.
