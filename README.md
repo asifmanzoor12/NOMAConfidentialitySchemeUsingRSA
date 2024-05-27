@@ -9,7 +9,7 @@ This project demonstrates the use of Non-Orthogonal Multiple Access (NOMA) combi
 To get started with the project, follow these steps:
 
 1. Clone the repository:
-   
+   ```sh
    git https://github.com/aafaq-rashid-comprinno/noma.git
    cd noma
    ```
