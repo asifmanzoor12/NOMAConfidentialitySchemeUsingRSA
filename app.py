@@ -127,4 +127,6 @@ def decrypt():
         return render_template('decrypt.html', decrypted_messages=decrypted_messages)
     return render_template('decrypt.html')
 
-if
+if __name__ == '__main__':
+    app.run(debug=True)
+
