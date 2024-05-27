@@ -3,7 +3,43 @@
 
 This project demonstrates the use of Non-Orthogonal Multiple Access (NOMA) combined with RSA encryption and decryption techniques. The project provides a simple Flask web application where users can generate RSA keys, encrypt messages, simulate NOMA transmission, and decrypt messages.
 
+## Theory
 
+The confidentiality scheme of the New Orthogonal Multiple Access (NOMA) system using the RSA technique involves utilizing RSA (Rivest-Shamir-Adleman) encryption to secure the transmission of data in a NOMA-based communication system. NOMA is a promising multiple access technique that allows multiple users to share the same frequency resources by using different power levels, thereby enhancing spectral efficiency.
+
+Here's a general outline of how RSA can be integrated into a NOMA system to achieve confidentiality:
+
+### 1. RSA Key Generation
+- **Key Pair Generation:** Each user in the NOMA system generates an RSA key pair: a public key (e, n) and a private key (d, n). The key generation process involves selecting two large prime numbers, p and q, computing n = pq, and determining e and d such that they satisfy the RSA algorithm's requirements.
+- **Distribution of Public Keys:** The public keys (e, n) are distributed to all users and the base station (BS).
+
+### 2. Encryption Process
+- **Message Encryption:** When a user (say User A) wants to send a confidential message to the BS or another user (say User B), User A encrypts the message using User B's public key (eB, nB). The encryption is done as follows:
+  - Convert the message M into an integer m such that 0 ≤ m < nB.
+  - Compute the ciphertext c = m^eB mod nB.
+- **NOMA Transmission:** The encrypted message c is then transmitted using NOMA, where User A and other users transmit their messages simultaneously but at different power levels.
+
+### 3. Decryption Process
+- **Receiving the Message:** Upon receiving the encrypted message, the BS or User B will use the private key (dB, nB) to decrypt it. The decryption is performed as follows:
+  - Compute m = c^dB mod nB.
+  - Convert the integer m back to the original message M.
+
+### 4. NOMA System Considerations
+- **Power Allocation:** In the NOMA system, power allocation is crucial to ensure that users' signals can be correctly separated at the receiver. This can be managed by the BS, which assigns different power levels to different users based on their channel conditions.
+- **User Grouping:** Users are grouped in such a way that strong users (with better channel conditions) can decode the messages of weak users (with poorer channel conditions) before decoding their own messages. This is facilitated by successive interference cancellation (SIC).
+- **Security Against Eavesdroppers:** The RSA encryption ensures that even if an eavesdropper intercepts the transmitted signals, they cannot decipher the messages without the private key, thereby maintaining the confidentiality of the communications.
+
+### Advantages of Using RSA in NOMA
+- **Asymmetric Encryption:** RSA, being an asymmetric encryption technique, ensures that the private key never needs to be shared, reducing the risk of key compromise.
+- **Scalability:** RSA can easily scale with the number of users in the NOMA system, as each user maintains their own key pair.
+- **Enhanced Security:** Combining NOMA with RSA encryption adds an extra layer of security, protecting the data not only at the physical layer but also at the application layer.
+
+### Challenges and Considerations
+- **Computational Overhead:** RSA encryption and decryption are computationally intensive, which might be a concern for devices with limited processing power.
+- **Key Management:** Proper management of RSA keys is essential to ensure the security and efficiency of the system.
+- **Interference Management:** Effective power allocation and user grouping strategies are required to manage interference in the NOMA system.
+
+By integrating RSA encryption with NOMA, we can achieve a secure and efficient communication system that leverages the advantages of both technologies to ensure the confidentiality of transmitted data.
 ## Installation
 
 To get started with the project, follow these steps:
