@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decrypt Messages</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Decrypt Messages</h1>
+        {% if decrypted_messages %}
+        <div class="alert alert-success">
+            <h4>Decrypted Messages:</h4>
+            {% for message in decrypted_messages %}
+            <p><strong>User {{ loop.index }} (Power {{ message.power }}):</strong></p>
+            <pre>{{ message.message }}</pre>
+            {% endfor %}
+        </div>
+        {% else %}
+        <form method="POST">
+            <div class="form-group">
+                <label for="private_key_bs">Base Station Private Key</label>
+                <textarea class="form-control" id="private_key_bs" name="private_key_bs" rows="5" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="encrypted_message_user1">Encrypted Message from User 1</label>
+                <textarea class="form-control" id="encrypted_message_user1" name="encrypted_message_user1" rows="5" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="encrypted_message_user2">Encrypted Message from User 2</label>
+                <textarea class="form-control" id="encrypted_message_user2" name="encrypted_message_user2" rows="5" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="power_user1">Power Level for User 1</label>
+                <input type="number" class="form-control" id="power_user1" name="power_user1" step="0.01" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="power_user2">Power Level for User 2</label>
+                <input type="number" class="form-control" id="power_user2" name="power_user2" step="0.01" min="0" max="1" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Decrypt Messages</button>
+        </form>
+        {% endif %}
+    </div>
+</body>
+</html>

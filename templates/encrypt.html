@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypt Messages</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Encrypt Messages</h1>
+        {% if encrypted_messages %}
+        <div class="alert alert-success">
+            <h4>Encrypted Messages:</h4>
+            <p><strong>Encrypted Message from User 1:</strong></p>
+            <pre>{{ encrypted_messages.encrypted_message_user1 }}</pre>
+            <p><strong>Encrypted Message from User 2:</strong></p>
+            <pre>{{ encrypted_messages.encrypted_message_user2 }}</pre>
+        </div>
+        <div class="text-center">
+            <a href="/noma" class="btn btn-primary">Simulate NOMA Transmission</a>
+        </div>
+        {% else %}
+        <form method="POST">
+            <div class="form-group">
+                <label for="public_key_bs">Base Station Public Key</label>
+                <textarea class="form-control" id="public_key_bs" name="public_key_bs" rows="5" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="message_user1">Message from User 1</label>
+                <input type="text" class="form-control" id="message_user1" name="message_user1" required>
+            </div>
+            <div class="form-group">
+                <label for="message_user2">Message from User 2</label>
+                <input type="text" class="form-control" id="message_user2" name="message_user2" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Encrypt Messages</button>
+        </form>
+        {% endif %}
+    </div>
+</body>
+</html>

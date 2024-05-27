@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate RSA Keys</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Generate RSA Keys</h1>
+        {% if keys %}
+        <div class="alert alert-success">
+            <h4>RSA Keys Generated:</h4>
+            <h5>User 1</h5>
+            <p><strong>Public Key:</strong></p>
+            <pre>{{ keys.public_key_user1 }}</pre>
+            <p><strong>Private Key:</strong></p>
+            <pre>{{ keys.private_key_user1 }}</pre>
+            <h5>User 2</h5>
+            <p><strong>Public Key:</strong></p>
+            <pre>{{ keys.public_key_user2 }}</pre>
+            <p><strong>Private Key:</strong></p>
+            <pre>{{ keys.private_key_user2 }}</pre>
+            <h5>Base Station</h5>
+            <p><strong>Public Key:</strong></p>
+            <pre>{{ keys.public_key_bs }}</pre>
+            <p><strong>Private Key:</strong></p>
+            <pre>{{ keys.private_key_bs }}</pre>
+        </div>
+        <div class="text-center">
+            <a href="/encrypt" class="btn btn-primary">Encrypt Messages</a>
+        </div>
+        {% else %}
+        <form method="POST">
+            <button type="submit" class="btn btn-primary btn-block">Generate Keys</button>
+        </form>
+        {% endif %}
+    </div>
+</body>
+</html>
