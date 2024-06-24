@@ -21,15 +21,15 @@
         <form method="POST">
             <div class="form-group">
                 <label for="private_key_bs">Base Station Private Key</label>
-                <textarea class="form-control" id="private_key_bs" name="private_key_bs" rows="5" required></textarea>
+                <textarea class="form-control" id="private_key_bs" name="private_key_bs" rows="5" required>{{ session['keys']['private_key_bs'] }}</textarea>
             </div>
             <div class="form-group">
                 <label for="encrypted_message_user1">Encrypted Message from User 1</label>
-                <textarea class="form-control" id="encrypted_message_user1" name="encrypted_message_user1" rows="5" required></textarea>
+                <textarea class="form-control" id="encrypted_message_user1" name="encrypted_message_user1" rows="5" required>{{ encrypted_messages.encrypted_message_user1 }}</textarea>
             </div>
             <div class="form-group">
                 <label for="encrypted_message_user2">Encrypted Message from User 2</label>
-                <textarea class="form-control" id="encrypted_message_user2" name="encrypted_message_user2" rows="5" required></textarea>
+                <textarea class="form-control" id="encrypted_message_user2" name="encrypted_message_user2" rows="5" required>{{ encrypted_messages.encrypted_message_user2 }}</textarea>
             </div>
             <div class="form-group">
                 <label for="power_user1">Power Level for User 1</label>
