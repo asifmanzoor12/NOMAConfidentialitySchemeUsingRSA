@@ -14,8 +14,10 @@
             <h4>Encrypted Messages:</h4>
             <p><strong>Encrypted Message from User 1:</strong></p>
             <pre>{{ encrypted_messages.encrypted_message_user1 }}</pre>
+            <p><strong>Shannon Entropy of Message from User 1:</strong> {{ entropy_user1 }}</p>
             <p><strong>Encrypted Message from User 2:</strong></p>
             <pre>{{ encrypted_messages.encrypted_message_user2 }}</pre>
+            <p><strong>Shannon Entropy of Message from User 2:</strong> {{ entropy_user2 }}</p>
         </div>
         <div class="text-center">
             <a href="/noma" class="btn btn-primary">Simulate NOMA Transmission</a>
